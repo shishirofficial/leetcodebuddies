@@ -1,0 +1,48 @@
+Brute Force Solution
+
+int twoSumLessThanK(vector<int>& nums, int k) 
+    {
+        int ans=-1;
+        
+        for(int i=0;i<nums.size()-1;i++)
+        {
+            for(int j=i+1;j<nums.size();j++)
+            {
+                int sum=nums[i]+nums[j];
+                if(sum<k)
+                {
+                    ans=max(ans,sum);
+                }
+            }
+        }
+       return ans; 
+    }
+
+
+..............................................................................
+Most Efficient Solution:
+
+int twoSumLessThanK(vector<int>& nums, int k)
+    {
+        sort(nums.begin(),nums.end());
+        int ans=-1;
+        int beg=0;
+        int last=nums.size()-1;
+        while(beg < last)
+        {
+            int sum=nums[beg]+nums[last];
+            if(sum<k)
+            {
+                ans=max(sum,ans);
+            }
+            if(sum < k)
+            {
+                beg++;
+            }
+            else if(sum >= k)
+            {
+                last--;
+            }
+        }
+       return ans; 
+    }
